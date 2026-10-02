@@ -86,6 +86,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-
 .btn{flex:1;display:inline-flex;justify-content:center;align-items:center;gap:8px;text-decoration:none;font-size:.9rem;font-weight:700;padding:13px 14px;border-radius:4px;border:1px solid var(--fg);color:var(--fg);background:transparent;min-width:140px;cursor:pointer;font-family:inherit}
 .btn.primary{background:var(--fg);color:var(--bg)}
 .btn svg{width:16px;height:16px}
+.official{margin:-4px 0 0;font-size:.78rem;text-align:center}.official a{color:var(--muted)}
 .pick-label{font-family:var(--latin);font-style:italic;color:var(--accent);font-size:1.1rem;text-align:center;margin:0}
 .foot{padding:28px 20px 0;font-size:.74rem;color:var(--muted);text-align:center;line-height:1.7}
 .foot a{color:var(--accent)}
@@ -243,21 +244,21 @@ const DICT = {
 };
 
 const UI = {
-  ja:{ post:"投稿を見る", hours:"営業", closed:"定休", title:"別府ごはん検索", subtitle:"@oishii.oita が実際に食べたお店だけ", q:"店名・料理名で探す", area:"エリア", genre:"ジャンル", tag:"条件",
+  ja:{ post:"Instagramの投稿を見る", hours:"営業", closed:"定休", title:"別府ごはん検索", subtitle:"@oishii.oita が実際に食べたお店だけ", q:"店名・料理名で探す", area:"エリア", genre:"ジャンル", tag:"条件",
        count:n=>`${n}件`, clear:"条件をクリア", empty:"条件に合うお店がまだありません。条件を減らしてみてください。",
-       ig:"Instagramで見る", map:"地図を開く", price:"目安", foot:"掲載はすべて実際に訪問したお店です（営業情報は2026年10月確認）。営業時間・価格は変わることがあるので、お出かけ前にご確認ください。<br>Instagram: " },
-  en:{ post:"See the post", hours:"Hours", closed:"Closed", title:"Beppu Eats", subtitle:"Only places @oishii.oita has actually eaten at", q:"Search by name or dish", area:"Area", genre:"Type", tag:"Good for",
+       ig:"お店の公式Instagram", map:"地図を開く", price:"目安", foot:"掲載はすべて実際に訪問したお店です（営業情報は2026年10月確認）。営業時間・価格は変わることがあるので、お出かけ前にご確認ください。<br>Instagram: " },
+  en:{ post:"See my Instagram post", hours:"Hours", closed:"Closed", title:"Beppu Eats", subtitle:"Only places @oishii.oita has actually eaten at", q:"Search by name or dish", area:"Area", genre:"Type", tag:"Good for",
        count:n=>`${n} place${n===1?"":"s"}`, clear:"Clear filters", empty:"No places match yet. Try removing a filter.",
-       ig:"View on Instagram", map:"Open map", price:"approx.", foot:"Every place listed has been visited in person. Hours and prices change, so please check before you go.<br>Instagram: " },
-  ko:{ post:"게시물 보기", hours:"영업", closed:"휴무", title:"벳푸 맛집 검색", subtitle:"@oishii.oita 가 직접 먹어본 가게만", q:"가게명·메뉴로 검색", area:"지역", genre:"종류", tag:"조건",
+       ig:"Restaurant's official Instagram", map:"Open map", price:"approx.", foot:"Every place listed has been visited in person. Hours and prices change, so please check before you go.<br>Instagram: " },
+  ko:{ post:"Instagram 게시물 보기", hours:"영업", closed:"휴무", title:"벳푸 맛집 검색", subtitle:"@oishii.oita 가 직접 먹어본 가게만", q:"가게명·메뉴로 검색", area:"지역", genre:"종류", tag:"조건",
        count:n=>`${n}곳`, clear:"조건 초기화", empty:"조건에 맞는 가게가 아직 없어요. 조건을 줄여보세요.",
-       ig:"Instagram에서 보기", map:"지도 열기", price:"약", foot:"모든 가게는 직접 방문한 곳입니다. 영업시간·가격은 바뀔 수 있으니 방문 전 확인해 주세요.<br>Instagram: " },
-  tw:{ post:"看貼文", hours:"營業", closed:"公休", title:"別府美食搜尋", subtitle:"只收錄 @oishii.oita 實際吃過的店", q:"以店名或料理搜尋", area:"地區", genre:"類型", tag:"條件",
+       ig:"가게 공식 Instagram", map:"지도 열기", price:"약", foot:"모든 가게는 직접 방문한 곳입니다. 영업시간·가격은 바뀔 수 있으니 방문 전 확인해 주세요.<br>Instagram: " },
+  tw:{ post:"看 Instagram 貼文", hours:"營業", closed:"公休", title:"別府美食搜尋", subtitle:"只收錄 @oishii.oita 實際吃過的店", q:"以店名或料理搜尋", area:"地區", genre:"類型", tag:"條件",
        count:n=>`${n} 間`, clear:"清除條件", empty:"目前沒有符合條件的店，請試著減少條件。",
-       ig:"在 Instagram 查看", map:"開啟地圖", price:"約", foot:"所有店家皆為實際到訪過的店。營業時間與價格可能變動，出發前請先確認。<br>Instagram: " },
-  cn:{ post:"看帖子", hours:"营业", closed:"休息", title:"别府美食搜索", subtitle:"只收录 @oishii.oita 实际吃过的店", q:"按店名或菜品搜索", area:"地区", genre:"类型", tag:"条件",
+       ig:"店家官方 Instagram", map:"開啟地圖", price:"約", foot:"所有店家皆為實際到訪過的店。營業時間與價格可能變動，出發前請先確認。<br>Instagram: " },
+  cn:{ post:"看 Instagram 帖子", hours:"营业", closed:"休息", title:"别府美食搜索", subtitle:"只收录 @oishii.oita 实际吃过的店", q:"按店名或菜品搜索", area:"地区", genre:"类型", tag:"条件",
        count:n=>`${n} 家`, clear:"清除条件", empty:"暂无符合条件的店，请试着减少条件。",
-       ig:"在 Instagram 查看", map:"打开地图", price:"约", foot:"所有店家均为实际到访过的店。营业时间和价格可能变动，出发前请先确认。<br>Instagram: " }
+       ig:"店家官方 Instagram", map:"打开地图", price:"约", foot:"所有店家均为实际到访过的店。营业时间和价格可能变动，出发前请先确认。<br>Instagram: " }
 };
 const HTML_LANG = {ja:"ja",en:"en",ko:"ko",tw:"zh-Hant",cn:"zh-Hans"};
 /* 地図上のエリア位置（％）。エリアを増やしたらここにも足す */
@@ -345,7 +346,8 @@ function openSheet(s,picked){
     <div class="tags"><span class="tag">${esc(t("area",s.area))}</span><span class="tag">${esc(t("genre",s.genre))}</span>${s.tags.map(x=>`<span class="tag">${esc(t("tag",x))}</span>`).join("")}</div>
     <p class="note">${esc(s.note[lang]||s.note.en||"")}</p>
     ${(s.hours||s.closed||s.pay||s.price)?`<dl class="info">${s.price?`<dt>${esc(u.price)}</dt><dd>¥${s.price.toLocaleString()}</dd>`:""}${s.hours?`<dt>${esc(u.hours)}</dt><dd>${esc(s.hours)}</dd>`:""}${s.closed?`<dt>${esc(u.closed)}</dt><dd>${esc(t("day",s.closed))}</dd>`:""}${s.pay?`<dt>Pay</dt><dd>${esc(t("pay",s.pay))}</dd>`:""}</dl>`:""}
-    <div class="links">${s.post?`<a class="btn primary" href="${s.post}" target="_blank" rel="noopener">${icon("ig")}${esc(u.post)}</a>`:""}${s.ig?`<a class="btn ${s.post?"":"primary"}" href="${s.ig}" target="_blank" rel="noopener">${icon("ig")}${esc(u.ig)}</a>`:""}<a class="btn ${(s.ig||s.post)?"":"primary"}" href="${s.map}" target="_blank" rel="noopener">${icon("map")}${esc(u.map)}</a>${picked?`<button type="button" class="btn" id="again">${esc(u2.again)}</button>`:""}</div>
+    <div class="links">${s.post?`<a class="btn primary" href="${s.post}" target="_blank" rel="noopener">${icon("ig")}${esc(u.post)}</a>`:""}<a class="btn ${s.post?"":"primary"}" href="${s.map}" target="_blank" rel="noopener">${icon("map")}${esc(u.map)}</a>${picked?`<button type="button" class="btn" id="again">${esc(u2.again)}</button>`:""}</div>
+    ${s.ig?`<p class="official"><a href="${s.ig}" target="_blank" rel="noopener">${esc(u.ig)} ↗</a></p>`:""}</div>
   </div></div>`;
   const close=()=>{ root.innerHTML=""; };
   $("close").addEventListener("click",close); $("scrim").addEventListener("click",e=>{ if(e.target.id==="scrim") close(); });
